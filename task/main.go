@@ -19,16 +19,54 @@ func main() {
 	}
 	fmt.Printf("%s \n", strings.Repeat("-", 42))
 
-	fmt.Println(m.get(2))
+	var end bool = false
+	for !end {
+		var choice int
+		fmt.Println("Admin, you have the following options to execute: \n 1. Add Medicine \n 2. Delete Medicine \n 3. Edit Medicine \n 4. Get Medicine \n 5. Exit")
+		fmt.Println("Choose an option: ")
+		fmt.Scanln(&choice)
+		switch choice {
+		case 1:
+			var index int = medlist[len(medlist)-1].id + 1
+			var price int
+			var name string
+			fmt.Println("Set Name: ")
+			fmt.Scanln(&name)
+			fmt.Println("Set Price: ")
+			fmt.Scanln(&price)
 
-	newmed := Medicine{10, "Napa10", 1000}
-	fmt.Println(m.add(newmed))
-	fmt.Println(m.getAll())
-	m.delete(0)
-	fmt.Println(m.getAll())
+			newmed := Medicine{index, name, price}
+			fmt.Println(m.add(newmed))
+			fmt.Println(m.getAll())
+		case 2:
+			var index int
+			fmt.Println("Enter the ID of the medicine you want to delete: ")
+			fmt.Scanln(&index)
+			m.delete(index)
+			fmt.Println(m.getAll())
+		case 3:
+			var index int
+			var price int
+			var name string
+			fmt.Println("Enter the Id of the medicine :")
+			fmt.Scanln(&index)
+			fmt.Println("Enter the Name of the medicine :")
+			fmt.Scanln(&name)
+			fmt.Println("Enter the Price of the medicine :")
+			fmt.Scanln(&price)
 
-	medupdate:=Medicine{10,"Napa10",1500}
-	fmt.Println(m.update(medupdate))
-	fmt.Println(m.getAll())
+			medupdate := Medicine{index, name, price}
+			fmt.Println(m.update(medupdate))
+			fmt.Println(m.getAll())
+		case 4:
+			var index int
+			fmt.Println("Enter the Id of the medicine :")
+			fmt.Scanln(&index)
+			fmt.Println(m.get(index))
+		case 5:
+			end = true
+		}
+
+	}
 
 }

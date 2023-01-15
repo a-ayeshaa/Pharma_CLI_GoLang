@@ -55,16 +55,29 @@ func (medicine Medicine) add(M Medicine) Medicine {
 }
 
 func (medicine Medicine) delete(id int) bool {
-	med := append(medlist[:id], medlist[id+1:len(medlist)-1]...)
-	// medlist[id]=Medicine {}
-	fmt.Println(med)
+	// var med []Medicine
+	for i, medval := range medlist {
+		if medval.id == id {
+			// if id == len(medlist)-1 {
+			// 	medlist = append(medlist[:i])
+			// 	fmt.Println(medlist, len(medlist))
+			// 	return true
+			// } else {
+				medlist = append(medlist[:i], medlist[i+1:]...)
+				// medlist[id]=Medicine {}
+				fmt.Println(medlist)
+			// }
+
+		}
+	}
+
 	return true
 }
 
 func (medicine Medicine) update(med Medicine) Medicine {
-	for i,medval:=range medlist{
-		if medval.id==med.id{
-			medlist[i]=med
+	for i, medval := range medlist {
+		if medval.id == med.id {
+			medlist[i] = med
 			return medlist[i]
 		}
 	}
