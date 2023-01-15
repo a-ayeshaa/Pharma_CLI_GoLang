@@ -5,11 +5,7 @@ import (
 	"strings"
 )
 
-func main() {
-
-	m := Medicine{}
-	meds := m.getAll()
-
+func printlist(meds []Medicine) {
 	fmt.Println("The available medicines are : ")
 	fmt.Printf("%s \n", strings.Repeat("-", 42))
 	fmt.Printf("| %10s | %10s | %12s  |\n", "Id", "Name", "Price")
@@ -18,6 +14,14 @@ func main() {
 		fmt.Printf("| %10d | %10s | %10d tk |\n", med.id, med.name, med.price)
 	}
 	fmt.Printf("%s \n", strings.Repeat("-", 42))
+} 
+
+func main() {
+
+	m := Medicine{}
+	meds := m.getAll()
+	printlist(meds)
+	
 
 	var end bool = false
 	for !end {
@@ -37,13 +41,15 @@ func main() {
 
 			newmed := Medicine{index, name, price}
 			fmt.Println(m.add(newmed))
-			fmt.Println(m.getAll())
+			printlist(m.getAll())
+
 		case 2:
 			var index int
 			fmt.Println("Enter the ID of the medicine you want to delete: ")
 			fmt.Scanln(&index)
 			m.delete(index)
-			fmt.Println(m.getAll())
+			printlist(m.getAll())
+
 		case 3:
 			var index int
 			var price int
@@ -57,7 +63,8 @@ func main() {
 
 			medupdate := Medicine{index, name, price}
 			fmt.Println(m.update(medupdate))
-			fmt.Println(m.getAll())
+			printlist(m.getAll())
+
 		case 4:
 			var index int
 			fmt.Println("Enter the Id of the medicine :")
