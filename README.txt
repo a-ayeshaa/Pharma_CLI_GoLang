@@ -27,3 +27,14 @@ task:
 		     If the user is a customer then the customer can buy, remove from cart, check the cart and also confirm the order.
 		     
 To run this project open terminal in "task" and write "go run *"
+
+e.g, If Admin wants to add medicine to the list:
+	- After admin logs in, he is given 5 options (with the actions mentioned).
+	- Choose option 1 by entering "1" (as this option indicates Adding medicine)
+	- User is asked to give the name of the medicine and the price that the user wants to set
+	- Medicine is added
+e.g, If Admin wants to delete a medicine from the list:
+	- Choose option 2 by entering "2" (ad this option indicates deleteing medicine)
+	- User is asked to enter the "ID" of the medicine he wants to delete.
+	- Medicine is deleted if the ID matches with the existing IDs
+If User wants to exit, selecting option "5 : Exit" or Ctrl+C from keyboard will halt the program. 

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"time"
+
 )
 
 func main(){
@@ -71,5 +72,36 @@ func main(){
 		case msg2:=<-c2:
 			fmt.Println("received",msg2,i)
 		}
+	}
+
+	//Timeouts
+
+	cc1:=make(chan string, 1)
+	go func ()  {
+		time.Sleep(2*time.Second)
+		cc1<-"result 1"
+	}()
+
+	select {
+	case res := <-cc1:
+		fmt.Println(res)
+	case <-time.After(3*time.Second):
+		fmt.Println("timeout 1")
+	}
+
+	//NON BLOCKING CHANNEL OPERATIONS
+	msgs:=make(chan string)
+	// signals:=make(chan bool)
+	go func ()  {
+		msgs <-"hello"
+	}()
+	time.Sleep(1*time.Second)
+
+	// msgs <- "hello"
+	select{
+	case msg:=<-msgs:
+		fmt.Println("received msg",msg)
+	default:
+		fmt.Println("no message received")
 	}
 }
