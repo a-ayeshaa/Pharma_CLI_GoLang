@@ -34,7 +34,7 @@ e.g, If Admin wants to add medicine to the list:
 	- User is asked to give the name of the medicine and the price that the user wants to set
 	- Medicine is added
 e.g, If Admin wants to delete a medicine from the list:
-	- Choose option 2 by entering "2" (ad this option indicates deleteing medicine)
+	- Choose option 2 by entering "2" (as this option indicates deleting medicine)
 	- User is asked to enter the "ID" of the medicine he wants to delete.
 	- Medicine is deleted if the ID matches with the existing IDs
 If User wants to exit, selecting option "5 : Exit" or Ctrl+C from keyboard will halt the program. 
