@@ -97,10 +97,40 @@ func main() {
 	time.Sleep(1 * time.Second)
 
 	select {
-	case <-msgs:
-		fmt.Println("received msg", <-msgs)
+	case ms:=<-msgs:
+		fmt.Println("received msg", ms)
 		// fmt.Println("received msg", <-msgs)
 	default:
 		fmt.Println("no message received")
 	}
+
+	time.Sleep(1 * time.Second)
+
+	//CLOSING CHANNELS
+
+	jobs := make(chan int, 5)
+	done1 := make(chan bool)
+
+	go func() {
+		for {
+			j, more := <-jobs
+			if more {
+				fmt.Println("received job", j)
+			} else {
+				fmt.Println("received all jobs")
+				done1 <- true
+				return
+			}
+		}
+	}()
+
+	for j := 1; j <= 3; j++ {
+		jobs <- j
+		fmt.Println("sent job", j)
+	}
+	close(jobs)
+
+	fmt.Println("sent all jobs")
+
+	<-done1
 }
